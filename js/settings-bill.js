@@ -20,6 +20,7 @@ var setCrictalLevel = 0;
 var callsTotal = 0;
 var smsTotal = 0;
 var total = 0;
+
 //add an event listener for when the 'Update settings' button is pressed
 function settingsBillTotal() {   
     if( setCallCostEle.value && setSmsCostEle.value){

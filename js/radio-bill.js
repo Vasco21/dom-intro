@@ -11,6 +11,10 @@ const totalTwoElem = document.querySelector(".totalTwo");
 //get a reference to the add button
 const myradioBillAddBtn = document.querySelector(".radioBillAddBtn");
 
+var userTemplate = document.querySelector(".userTemplate").innerHTML
+
+ var RadiobillTemp = Handlebars.compile(userTemplate);
+
 //create a variable that will keep track of the total bill
 var trackBillCall = 0;
 var trackBillSms = 0;
@@ -30,10 +34,10 @@ if (checkedRadioBtn){
             trackBill += 0.00;
         }
     }
-    callTotalTwoElement.innerHTML = trackBillCall.toFixed(2);
-    smsTotalTwoElement.innerHTML = trackBillSms.toFixed(2);
+    callTotalTwoElement.innerHTML = RadiobillTemp({totalCallTemp: trackBillCall.toFixed(2)});
+    smsTotalTwoElement.innerHTML = RadiobillTemp({totalSmsTemp: trackBillSms.toFixed(2)});
     var totalcost =  trackBillCall + trackBillSms;
-    totalTwoElem.innerHTML = totalcost.toFixed(2);
+    totalTwoElem.innerHTML = RadiobillTemp({totalCostTemp: totalcost.toFixed(2)});
 
     if(totalcost > 30){
         totalTwoElem.classList.add("warning");

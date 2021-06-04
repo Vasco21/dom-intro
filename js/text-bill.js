@@ -8,13 +8,13 @@ const callTotalOneElement = document.querySelector(".callTotalOne");
 const smsTotalOneElement = document.querySelector(".smsTotalOne");
 
 const totalOneElement = document.querySelector(".totalOne");
+var userTemplate = document.querySelector(".userTemplate").innerHTML
 
-
+ var textbillTemp = Handlebars.compile(userTemplate);
 //create a variable that will keep track of the total bill
 var TotalTrackCall = 0;
 var TotalTrackSms = 0
 var TotalTracInv = "";
-
 
 
 function totalTextBill(){
@@ -32,10 +32,10 @@ function totalTextBill(){
         else if(billItem === ""){
             TotalTracInv += 0.00;
         }
-        callTotalOneElement.innerHTML = TotalTrackCall.toFixed(2);
-        smsTotalOneElement.innerHTML = TotalTrackSms.toFixed(2);
+        callTotalOneElement.innerHTML = textbillTemp({totalCallTemp: TotalTrackCall.toFixed(2)}) ;
+        smsTotalOneElement.innerHTML = textbillTemp({totalSmsTemp: TotalTrackSms.toFixed(2)}) ;
         var totalcost =  TotalTrackCall + TotalTrackSms;
-        totalOneElement.innerHTML = totalcost.toFixed(2);
+        totalOneElement.innerHTML = textbillTemp({totalCostTemp: totalcost.toFixed(2)}) ;
         
         totalOneElement.classList.remove("danger");
         totalOneElement.classList.remove("warning");
